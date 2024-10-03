@@ -4,10 +4,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load the data
-reviews_per_category = pd.read_csv("Data/reviews_per_category.csv")
-payments_per_method_month_full = pd.read_csv("Data/payments_per_method_month_full.csv")
-top_10_fastest_shipping = pd.read_csv("Data/result.csv")
-rfm_df = pd.read_csv("Data/rfm_df.csv")
+reviews_per_category = pd.read_csv("dashboard/reviews_per_category.csv")
+payments_per_method_month_full = pd.read_csv("dashboard/payments_per_method_month_full.csv")
+top_10_fastest_shipping = pd.read_csv("dashboard/result.csv")
 
 st.title("E-commerce Analytics Dashboard")
 
@@ -57,24 +56,3 @@ ax2.legend(loc='upper left')
 plt.tight_layout()
 st.pyplot(plt)
 
-# Plot 4: RFM Analysis
-st.header("Analisis RFM Pelanggan")
-fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(18, 10))
-
-sns.barplot(x="recency", y="customer_id", data=rfm_df.sort_values(by="recency", ascending=True).head(5), palette="Blues_d", ax=ax[0])
-ax[0].set_title("Top 10 Customers by Recency (Days)")
-ax[0].set_xlabel("Recency (Days)")
-ax[0].set_ylabel("Customer ID")
-
-sns.barplot(x="frequency", y="customer_id", data=rfm_df.sort_values(by="frequency", ascending=False).head(5), palette="Greens_d", ax=ax[1])
-ax[1].set_title("Top 10 Customers by Frequency")
-ax[1].set_xlabel("Frequency")
-ax[1].set_ylabel("Customer ID")
-
-sns.barplot(x="monetary", y="customer_id", data=rfm_df.sort_values(by="monetary", ascending=False).head(5), palette="Reds_d", ax=ax[2])
-ax[2].set_title("Top 10 Customers by Monetary Value")
-ax[2].set_xlabel("Monetary Value")
-ax[2].set_ylabel("Customer ID")
-
-plt.tight_layout()
-st.pyplot(fig)
