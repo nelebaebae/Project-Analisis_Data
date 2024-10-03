@@ -42,16 +42,22 @@ st.pyplot(plt)
 
 # Plot 3: Top 10 Fastest Shipping Categories
 st.header("Top 10 Kategori Produk dengan Waktu Pengiriman Tercepat (6 bulan terakhir)")
-plt.figure(figsize=(12, 6))
-sns.barplot(x='product_category_name', y='average_shipping_time_days', data=top_10_fastest_shipping, palette='Blues_d')
-plt.xlabel('Kategori Produk')
-plt.ylabel('Waktu Pengiriman Rata-rata (Hari)')
-plt.title('Top 10 Kategori Produk dengan Waktu Pengiriman Tercepat')
-plt.xticks(rotation=90)
-ax2 = plt.twinx()
-sns.lineplot(x='product_category_name', y='total_sales', data=top_10_fastest_shipping, color='orange', marker="o", label='Total Penjualan')
+fig, ax1 = plt.subplots(figsize=(12, 6))
+sns.barplot(x='product_category_name', y='average_shipping_time_days', data=top_10_fastest_shipping, palette='Blues_d', ax=ax1)
+
+ax1.set_xlabel('Kategori Produk')
+ax1.set_ylabel('Waktu Pengiriman Rata-rata (Hari)')
+ax1.set_title('Top 10 Kategori Produk dengan Waktu Pengiriman Tercepat')
+
+ax1.set_xticklabels(ax1.get_xticklabels(), rotation=90)
+
+ax2 = ax1.twinx()
+sns.lineplot(x='product_category_name', y='total_sales', data=top_10_fastest_shipping, color='orange', marker="o", ax=ax2)
+
 ax2.set_ylabel('Total Penjualan')
-ax2.legend(loc='upper left')
-plt.tight_layout()
-st.pyplot(plt)
+
+ax2.legend(['Total Penjualan'], loc='upper left')
+fig.tight_layout()
+
+st.pyplot(fig)
 
