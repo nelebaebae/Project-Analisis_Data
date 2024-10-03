@@ -5,8 +5,8 @@ import seaborn as sns
 
 # Load the data
 reviews_per_category = pd.read_csv("dashboard/reviews_per_category.csv")
-payments_per_method_month_full = pd.read_csv("dashboard/payments_per_method_month_full.csv")
-top_10_fastest_shipping = pd.read_csv("dashboard/result.csv")
+payments_per_method_month_full = pd.read_csv("dashboard/filtered_payments_per_method_month.csv")
+top_10_fastest_shipping = pd.read_csv("dashboard/top_10_fastest_shipping.csv.csv")
 
 st.title("E-commerce Analytics Dashboard")
 
